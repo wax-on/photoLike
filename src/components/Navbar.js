@@ -23,6 +23,7 @@ export default function App() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="/albums">Albums</Nav.Link>
+          <Nav.Link href="/imageUpLoader">Upload</Nav.Link>
           <Nav.Link href="/photos">Photos</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
           <Nav.Link>
