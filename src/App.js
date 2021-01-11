@@ -7,9 +7,10 @@ import ForgotPassword from "./components/ForgotPassword";
 import SignUp from "./components/SignUp";
 import Photos from "./components/Photos";
 import Albums from "./components/Albums";
+import Album from "./components/Album";
+import CreateAlbums from "./components/CreateAlbums";
 import NotFound from "./components/NotFound";
 import AuthRoute from "./components/AuthRoute";
-import ImageUpLoader from "./components/ImageUpLoader";
 
 import AuthContextProvider from "./contexts/AuthContext";
 
@@ -25,13 +26,10 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/forgotpassword" component={ForgotPassword} />
               <Route exact path="/signup" component={SignUp} />
-              <AuthRoute
-                exact
-                path="/imageUpLoader"
-                component={ImageUpLoader}
-              />
               <AuthRoute exact path="/photos" component={Photos} />
               <AuthRoute exact path="/albums" component={Albums} />
+              <AuthRoute exact path="/albums/create" component={CreateAlbums} />
+              <AuthRoute exact path="/albums/:albumId" component={Album} />
               <Route exact path="*" component={NotFound} />
             </Switch>
           </div>

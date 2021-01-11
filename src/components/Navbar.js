@@ -7,7 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   let history = useHistory();
 
   const handleLogout = async () => {
@@ -23,13 +23,10 @@ export default function App() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="/albums">Albums</Nav.Link>
-          <Nav.Link href="/imageUpLoader">Upload</Nav.Link>
           <Nav.Link href="/photos">Photos</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link>
-            <a href="/" onClick={handleLogout}>
-              Log out
-            </a>
+          <Nav.Link href="/" onClick={handleLogout}>
+            Log out
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
