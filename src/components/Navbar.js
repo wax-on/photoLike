@@ -23,11 +23,14 @@ export default function App() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="/albums">Albums</Nav.Link>
-          <Nav.Link href="/photos">Photos</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/" onClick={handleLogout}>
-            Log out
-          </Nav.Link>
+
+          {currentUser ? (
+            <Nav.Link href="/" onClick={handleLogout}>
+              Log out
+            </Nav.Link>
+          ) : (
+            <Nav.Link href="/login">Login</Nav.Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 const CardImage = ({ image }) => {
   return (
     <Col sm={6} md={4} lg={3}>
-      <Card className="mb-3">
+      <Card className="mb-3 ">
         <Card.Img variant="top" src={image.url} />
 
         <Card.Body>

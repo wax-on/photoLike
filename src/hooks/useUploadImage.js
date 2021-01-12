@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { db, storage } from "../firebase/index";
+import { useAuth } from "../contexts/AuthContext";
 
-const useUploadImage = (file) => {
+const useUploadImage = (file, albumId) => {
   const [uploadProgress, setUploadProgress] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [error, setError] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     if (!file) {
@@ -18,7 +20,7 @@ const useUploadImage = (file) => {
     }
     setError(null);
     setIsSuccess(false);
-    const fileRef = storage.ref(`images/${file.name}`);
+    const fileRef = storage.ref(`images/${currentUser.uid}/${file.name}`);
     const uploadTask = fileRef.put(file);
 
     uploadTask.on("state_changed", (snap) => {
@@ -27,29 +29,29 @@ const useUploadImage = (file) => {
       );
     });
     uploadTask
-      .then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((url) => {
-          // läggtill foto i db
-          const image = {
-            name: file.name,
-            path: snapshot.ref.fullPath,
-            size: file.size,
-            type: file.type,
-            url,
-          };
+      .then(async (snapshot) => {
+        const url = await snapshot.ref.getDownloadURL();
+        // läggtill foto i db
 
-          db.collection("images")
-            .add(image)
-            .then((doc) => {
-              fileRef.updateMetadata({
-                customMetadata: { firestoreId: doc.id },
-              });
-              setIsSuccess(true);
-              setUploadProgress(null);
-              setUploadedImage(image);
-              setIsSuccess(true);
-            });
-        });
+        const image = {
+          name: file.name,
+          owner: currentUser.uid,
+          path: snapshot.ref.fullPath,
+          size: file.size,
+          type: file.type,
+          url,
+        };
+
+        if (albumId) {
+          image.album = db.collection("albums").doc(albumId);
+        }
+
+        await db.collection("images").add(image);
+
+        setIsSuccess(true);
+        setUploadProgress(null);
+        setUploadedImage(image);
+        setIsSuccess(true);
       })
       .catch((error) => {
         console.error("If error:", error);
@@ -58,7 +60,7 @@ const useUploadImage = (file) => {
           msg: `No upload! Big error (${error.code})`,
         });
       });
-  }, [file]);
+  }, [file, albumId, currentUser]);
 
   return { uploadProgress, uploadedImage, error, isSuccess };
 };

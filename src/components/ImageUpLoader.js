@@ -4,10 +4,13 @@ import { useDropzone } from "react-dropzone";
 import { ProgressBar } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 
-const ImageUpLoader = () => {
+const ImageUpLoader = ({ albumId }) => {
   const [uploadFile, setUploadFile] = useState(null);
   const [message, setMessage] = useState(null);
-  const { uploadProgress, error, isSuccess } = useUploadImage(uploadFile);
+  const { uploadProgress, error, isSuccess } = useUploadImage(
+    uploadFile,
+    albumId
+  );
 
   useEffect(() => {
     if (error) {
