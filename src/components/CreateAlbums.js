@@ -62,7 +62,11 @@ const CreateAlbums = () => {
                   )}
                 </Form.Group>
 
-                <Button disabled={loading} type="submit">
+                <Button
+                  className="btn btn-info btn-lg text-decoration-none"
+                  disabled={loading}
+                  type="submit"
+                >
                   Create
                 </Button>
               </Form>

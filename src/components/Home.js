@@ -6,9 +6,10 @@ const Home = () => {
 
   return (
     <>
-      <div>
-        <p>This is home</p>
-        <p>Du är inloggad som {currentUser && currentUser.email}</p>
+      <div className="background">
+        <p className="text-center align-middle center">
+          Hello {currentUser && currentUser.email}
+        </p>
       </div>
     </>
   );

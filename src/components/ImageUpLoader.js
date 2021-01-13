@@ -34,8 +34,9 @@ const ImageUpLoader = ({ albumId }) => {
     if (acceptedFiles.lenght === 0) {
       return;
     }
-
-    setUploadFile(acceptedFiles[0]);
+    acceptedFiles.forEach((file) => {
+      setUploadFile(file);
+    });
   }, []);
 
   const {
@@ -83,7 +84,7 @@ const ImageUpLoader = ({ albumId }) => {
       )}
 
       {uploadProgress !== null && (
-        <ProgressBar variant="danger" animated now={uploadProgress} />
+        <ProgressBar variant="info" animated now={uploadProgress} />
       )}
       {message && (
         <Alert variant={message.error ? "warning" : "success"}>

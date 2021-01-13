@@ -28,11 +28,6 @@ const SignUp = () => {
       setError(e.message);
       setLoading(false);
     }
-    // console.log("email", emailRef.current.value);
-    // console.log("password", passwordRef.current.value);
-    // console.log("passwordConf", passwordConfirmRef.current.value);
-
-    //Kolla om användare har skrivit in samma lösen två ggr?
   };
   return (
     <>

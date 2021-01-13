@@ -1,41 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Row } from "react-bootstrap";
-import { db } from "../firebase";
-
-import { useAuth } from "../contexts/AuthContext";
-import { useEffect } from "react";
-import Picsses from "../assets/imgs/1.jpg";
+import useAlbums from "../../hooks/useAlbums";
+import Picsses from "../../assets/imgs/1.jpg";
 
 const Albums = () => {
-  const { currentUser } = useAuth();
-  const [albums, setAlbums] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { albums, loading } = useAlbums();
 
-  // hämta alla album från DB som denna avändare äger!
-  useEffect(() => {
-    const unsub = db
-      .collection("albums")
-      .where("owner", "==", currentUser.uid)
-      .orderBy("title")
-      .onSnapshot((snapshot) => {
-        setLoading(true);
-        const dbAlbums = [];
-        snapshot.forEach((doc) => {
-          dbAlbums.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        setAlbums(dbAlbums);
-        setLoading(false);
-      });
-    return unsub;
-  }, [currentUser]);
   return (
     <>
       <h2 className="mt-5">Albums</h2>
       <div className="mt-5">{loading && <p>Loading...</p>}</div>
+      <Button className="btn btn-info btn-lg mb-5">
+        <Link className="text-light text-decoration-none " to="/albums/create">
+          Create Album
+        </Link>
+      </Button>
       {!loading && (
         <Row>
           {albums.map((album) => (
@@ -59,13 +39,6 @@ const Albums = () => {
           ))}
         </Row>
       )}
-      <div>
-        <Button className="btn btn-info btn-lg">
-          <Link className="text-light " to="/albums/create">
-            Create Album
-          </Link>
-        </Button>
-      </div>
     </>
   );
 };

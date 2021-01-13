@@ -9,3 +9,22 @@ p {
 .dotted {
   border: 2px dashed rgb(118, 118, 118);
 }
+
+.background {
+  background: url("https://source.unsplash.com/twukN12EN7c/1920x1080") no-repeat
+    center center fixed;
+  width: 100vw;
+  height: 95vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
