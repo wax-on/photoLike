@@ -23,5 +23,4 @@ const useAlbum = (albumId) => {
 
   return { album, loading };
 };
-
 export default useAlbum;

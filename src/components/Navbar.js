@@ -8,11 +8,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
   const { logout, currentUser } = useAuth();
-  let history = useHistory();
+  let navigate = useHistory();
 
   const handleLogout = async () => {
     await logout();
-    history.push("/");
+    navigate.push("/");
     window.location.reload();
   };
 
@@ -23,6 +23,7 @@ export default function App() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="/albums">Albums</Nav.Link>
+          <Nav.Link href="/reviedalbums">Reviewed</Nav.Link>
 
           {currentUser ? (
             <Nav.Link href="/" onClick={handleLogout}>
