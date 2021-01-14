@@ -36,11 +36,12 @@ const AlbumsImages = ({ images, handleImageArray }) => {
                     </Row>
                   </>
                 )}
-                <Card.Body>
+                {/* // kanske ta bort  */}
+                {/* <Card.Body>
                   <Card.Text className="text-muted small">
                     {image.name} ({Math.round(image.size / 1024)} kb)
                   </Card.Text>
-                </Card.Body>
+                </Card.Body> */}
               </Card>
             </Col>
           ))}

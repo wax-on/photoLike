@@ -108,37 +108,39 @@ const Albums = () => {
         </Button>
 
         {titleChanged && (
-          <Form onSubmit={handleNewAlbum}>
-            <Form.Group id="title">
-              <Form.Label>Album Title</Form.Label>
-              <Form.Control
-                type="title"
-                onChange={handleName}
-                value={title}
-                required
-              />
-              {error && <p>{error}</p>}
-              {title && title.length < 4 && (
-                <Form.Text className="text-info">
-                  Please enter a title at least 4 characters long.
-                </Form.Text>
-              )}
-            </Form.Group>
+          <div className="d-flex justify-content-center ">
+            <Form onSubmit={handleNewAlbum} className="w-50 p-3 text-center">
+              <Form.Group id="title">
+                <Form.Label>New Album Title</Form.Label>
+                <Form.Control
+                  type="title"
+                  onChange={handleName}
+                  value={title}
+                  required
+                />
+                {error && <p>{error}</p>}
+                {title && title.length < 4 && (
+                  <Form.Text className="text-info">
+                    Please enter a title at least 4 characters long.
+                  </Form.Text>
+                )}
+              </Form.Group>
 
-            <Button
-              className="btn btn-info btn-lg text-decoration-none"
-              disabled={loading}
-              type="submit"
-            >
-              Create
-            </Button>
-          </Form>
+              <Button
+                className="btn btn-info btn-lg text-decoration-none"
+                disabled={loading}
+                type="submit"
+              >
+                Create New Album
+              </Button>
+            </Form>
+          </div>
         )}
 
         {reviewLink && (
-          <p>
-            Review link:{" "}
-            <Button className=" btn btn-info btn-lg ml-3" onClick={setCopied}>
+          <p className="mt-2 text-muted font-weight-light">
+            {reviewLink}
+            <Button className=" btn btn-info btn-sm ml-3" onClick={setCopied}>
               {isCopied ? "Copied " : "Copy Link "}
             </Button>
           </p>

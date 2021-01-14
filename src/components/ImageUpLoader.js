@@ -55,7 +55,7 @@ const ImageUpLoader = ({ albumId }) => {
   return (
     <div
       {...getRootProps()}
-      className={` bg-dark text-light text-center mt-3 px-4 py-3 ${
+      className={` bg-dark text-light text-center mt-3 px-4 py-3  w-90 ${
         isDragAccept ? `drag-accept` : ``
       } ${isDragReject ? `drag-reject` : ``}`}
     >
