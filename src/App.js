@@ -12,7 +12,7 @@ import CreateAlbums from "./components/CreateAlbums";
 import NotFound from "./components/NotFound";
 import AuthRoute from "./components/AuthRoute";
 import ReviewAlbum from "./components/Albums/ReviewAlbum";
-import ReviedAlbum from "./components/Albums/ReviedAlbums";
+import DonePage from "./components/Albums/DonePage";
 
 import AuthContextProvider from "./contexts/AuthContext";
 
@@ -28,9 +28,9 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/forgotpassword" component={ForgotPassword} />
               <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/done" component={DonePage} />
               <Route exact path="/review/:albumId" component={ReviewAlbum} />
               <AuthRoute exact path="/albums" component={Albums} />
-              <AuthRoute exact path="/reviedalbums" component={ReviedAlbum} />
               <AuthRoute exact path="/albums/create" component={CreateAlbums} />
               <AuthRoute exact path="/albums/:albumId" component={Album} />
               <AuthRoute

@@ -23,7 +23,6 @@ export default function App() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link href="/albums">Albums</Nav.Link>
-          <Nav.Link href="/reviedalbums">Reviewed</Nav.Link>
 
           {currentUser ? (
             <Nav.Link href="/" onClick={handleLogout}>

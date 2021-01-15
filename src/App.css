@@ -32,3 +32,12 @@ p {
 .text-muted {
   font-size: 1rem;
 }
+
+button:focus {
+  border: chartreuse;
+  background-color: forestgreen;
+}
+button:focus {
+  border: crimson;
+  background-color: red;
+}
