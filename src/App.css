@@ -33,11 +33,37 @@ p {
   font-size: 1rem;
 }
 
-button:focus {
-  border: chartreuse;
-  background-color: forestgreen;
+/*
+ liked button
+ */
+
+.iliked {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: gray;
 }
-button:focus {
-  border: crimson;
-  background-color: red;
+.iliked-active {
+  color: red;
+  animation: pop 0.3s linear 1;
+}
+/*
+ Disliked button
+ */
+
+.idisLiked {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: gray;
+}
+.idisLiked-active {
+  color: black;
+  animation: pop 0.3s linear 1;
+}
+
+@keyframes pop {
+  30% {
+    transform: scale(1.3);
+  }
 }

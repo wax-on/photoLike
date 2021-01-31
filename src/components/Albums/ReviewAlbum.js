@@ -75,7 +75,22 @@ const ReviewAlbum = () => {
     }
   };
 
-  const handelLikes = (image, liked) => {
+  const likeOrDisLike = (id, liked) => {
+    let Row = document.getElementById(id);
+    if (liked === true) {
+      Row.getElementsByClassName("iliked")[0].classList.add("iliked-active");
+      Row.getElementsByClassName("idisLiked")[0].classList.remove(
+        "idisLiked-active"
+      );
+    } else if (liked === false) {
+      Row.getElementsByClassName("idisLiked")[0].classList.add(
+        "idisLiked-active"
+      );
+      Row.getElementsByClassName("iliked")[0].classList.remove("iliked-active");
+    }
+  };
+
+  const handleLikes = (image, liked) => {
     let updatedImagesArray = reviewImage.map((img) => {
       if (img.id === image.id) {
         return {
@@ -87,6 +102,7 @@ const ReviewAlbum = () => {
       }
     });
     setReviewImage(updatedImagesArray);
+    likeOrDisLike(image.id, liked);
   };
 
   if (loading) {
@@ -100,7 +116,7 @@ const ReviewAlbum = () => {
         that you can Review
       </h5>
 
-      <AlbumsImages images={images} handelLikes={handelLikes} key={images.id} />
+      <AlbumsImages images={images} handleLikes={handleLikes} key={images.id} />
 
       <p className="text-center">
         You have liked : {likedImage.length} / {images.length}

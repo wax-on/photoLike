@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
+import { IoIosHeart } from "react-icons/io";
 
-const AlbumsImages = ({ images, handleImageArray, handelLikes }) => {
+const AlbumsImages = ({ images, handleImageArray, handleLikes }) => {
   const { currentUser } = useAuth();
 
   return (
@@ -29,21 +30,22 @@ const AlbumsImages = ({ images, handleImageArray, handelLikes }) => {
                   </div>
                 ) : (
                   <>
-                    <Row className="d-flex justify-content-between ml-5 mr-5 mt-3">
+                    <Row
+                      id={image.id}
+                      className="d-flex justify-content-between ml-5 mr-5 mt-3"
+                    >
                       <button
-                        id="likes"
-                        className="like"
-                        onClick={() => handelLikes(image, true)}
+                        className="iliked"
+                        onClick={() => handleLikes(image, true)}
                       >
-                        ❤️
+                        <IoIosHeart className="likeHeart" size="2em" />
                       </button>
 
                       <button
-                        id="disLike"
-                        className="disLike"
-                        onClick={() => handelLikes(image, false)}
+                        className="idisLiked"
+                        onClick={() => handleLikes(image, false)}
                       >
-                        🖤
+                        <IoIosHeart className="disLikedHeart" size="2em" />
                       </button>
                     </Row>
                   </>
