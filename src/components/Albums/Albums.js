@@ -11,7 +11,7 @@ const Albums = () => {
     <>
       <h2 className="mt-5">Albums</h2>
       <div className="mt-5">{loading && <p>Loading...</p>}</div>
-      <Button className="btn btn-info btn-lg mb-5">
+      <Button className="btn btn-info btn-lg mb-5 mt-3">
         <Link className="text-light text-decoration-none " to="/albums/create">
           Create Album
         </Link>

@@ -10,6 +10,7 @@ import useClipboard from "react-use-clipboard";
 import { db } from "../../firebase";
 import firebase from "../../firebase/index";
 import { useAuth } from "../../contexts/AuthContext";
+import ImageLightBox from "../LightBox/ImageLightBox";
 
 const Albums = () => {
   const { currentUser } = useAuth();
@@ -23,6 +24,7 @@ const Albums = () => {
   const [title, setTitle] = useState("");
   const [titleChanged, setTitleChanged] = useState(false);
   const navigate = useHistory();
+  const [selectedImg, setSelectedImg] = useState(null);
 
   if (loading) {
     return <p className="text-center">Loading...</p>;
@@ -80,7 +82,7 @@ const Albums = () => {
           This is Album <strong>"{album.title}"</strong>
         </h5>
 
-        <Button className="btn btn-info btn-lg">
+        <Button className="btn btn-info btn-lg mt-2 ">
           <Link
             className="text-light text-decoration-none "
             to={`/albums/edit/${albumId}`}
@@ -90,7 +92,7 @@ const Albums = () => {
         </Button>
 
         <Button
-          className="btn btn-info btn-lg ml-3"
+          className="btn btn-info btn-lg ml-3 mt-2 "
           onClick={() => {
             createReviewLink(albumId);
           }}
@@ -99,7 +101,7 @@ const Albums = () => {
         </Button>
 
         <Button
-          className="btn btn-info btn-lg ml-3"
+          className="btn btn-info btn-lg ml-3 mt-2"
           onClick={() => {
             setTitleChanged(!titleChanged);
           }}
@@ -147,7 +149,17 @@ const Albums = () => {
         )}
 
         <ImageUpLoader albumId={albumId} />
-        <AlbumsImages images={images} handleImageArray={handleImageArray} />
+        <AlbumsImages
+          images={images}
+          handleImageArray={handleImageArray}
+          setSelectedImg={setSelectedImg}
+        />
+        {selectedImg && (
+          <ImageLightBox
+            selectedImg={selectedImg}
+            setSelectedImg={setSelectedImg}
+          />
+        )}
       </div>
     </>
   );

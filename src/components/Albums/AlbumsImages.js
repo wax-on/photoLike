@@ -3,7 +3,12 @@ import { Card, Col, Row } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import { IoIosHeart } from "react-icons/io";
 
-const AlbumsImages = ({ images, handleImageArray, handleLikes }) => {
+const AlbumsImages = ({
+  images,
+  handleImageArray,
+  handleLikes,
+  setSelectedImg,
+}) => {
   const { currentUser } = useAuth();
 
   return (
@@ -12,11 +17,13 @@ const AlbumsImages = ({ images, handleImageArray, handleLikes }) => {
         {images &&
           images.map((image) => (
             <Col sm={6} md={4} lg={3}>
-              <Card key={image.id} className="mb-3 border-0 ">
+              <Card key={image.id} className="mb-3 border-0">
                 <Card.Img
+                  className="sameSize"
                   style={{ width: "auto", height: "300px" }}
                   variant="top"
                   src={image.url}
+                  onClick={() => setSelectedImg(image.url)}
                 />
                 {currentUser ? (
                   <div>
@@ -39,6 +46,7 @@ const AlbumsImages = ({ images, handleImageArray, handleLikes }) => {
                         onClick={() => handleLikes(image, true)}
                       >
                         <IoIosHeart className="likeHeart" size="2em" />
+                        Like
                       </button>
 
                       <button
@@ -46,6 +54,7 @@ const AlbumsImages = ({ images, handleImageArray, handleLikes }) => {
                         onClick={() => handleLikes(image, false)}
                       >
                         <IoIosHeart className="disLikedHeart" size="2em" />
+                        Dislike
                       </button>
                     </Row>
                   </>

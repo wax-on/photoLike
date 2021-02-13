@@ -5,18 +5,18 @@ import { db } from "../../firebase";
 import AlbumsImages from "./AlbumsImages";
 import useImages from "../../hooks/useImages";
 import useAlbum from "../../hooks/useAlbum";
+import ImageLightBox from "../LightBox/ImageLightBox";
 
 const ReviewAlbum = () => {
   const { albumId } = useParams();
-
   const { images } = useImages(albumId);
-
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
   const [likedImage, setLikedImage] = useState([]);
   const [reviewImage, setReviewImage] = useState([]);
-
   const { album, loading } = useAlbum(albumId);
+  const [selectedImg, setSelectedImg] = useState(null);
+
   const navigate = useHistory();
 
   useEffect(() => {
@@ -116,7 +116,18 @@ const ReviewAlbum = () => {
         that you can Review
       </h5>
 
-      <AlbumsImages images={images} handleLikes={handleLikes} key={images.id} />
+      <AlbumsImages
+        images={images}
+        handleLikes={handleLikes}
+        key={images.id}
+        setSelectedImg={setSelectedImg}
+      />
+      {selectedImg && (
+        <ImageLightBox
+          selectedImg={selectedImg}
+          setSelectedImg={setSelectedImg}
+        />
+      )}
 
       <p className="text-center">
         You have liked : {likedImage.length} / {images.length}

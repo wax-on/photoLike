@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import { Nav, Navbar } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,18 +18,27 @@ export default function App() {
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/">Photo Reviewer</Navbar.Brand>
+      <NavLink
+        to="/"
+        className="text-light mt-2 text-uppercase text-decoration-none"
+      >
+        Photo Reviewer
+      </NavLink>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="/albums">Albums</Nav.Link>
+          <NavLink to="/albums" className="text-light mt-2 mr-2">
+            Albums
+          </NavLink>
 
           {currentUser ? (
-            <Nav.Link href="/" onClick={handleLogout}>
+            <NavLink to="/" onClick={handleLogout} className="text-light mt-2">
               Log out
-            </Nav.Link>
+            </NavLink>
           ) : (
-            <Nav.Link href="/login">Login</Nav.Link>
+            <NavLink to="/login" className="text-light mt-2">
+              Login
+            </NavLink>
           )}
         </Nav>
       </Navbar.Collapse>
